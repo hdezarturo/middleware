@@ -4,6 +4,28 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://practicas.middleware.mis" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addArticulo">
+    <complexType>
+     <sequence>
+      <element name="p" type="impl:Articulo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Articulo">
+    <sequence>
+     <element name="articulo" nillable="true" type="xsd:string"/>
+     <element name="categoria" nillable="true" type="xsd:string"/>
+     <element name="idarticulo" type="xsd:int"/>
+     <element name="precio" nillable="true" type="xsd:decimal"/>
+    </sequence>
+   </complexType>
+   <element name="addArticuloResponse">
+    <complexType>
+     <sequence>
+      <element name="addArticuloReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getArticulo">
     <complexType>
      <sequence>
@@ -18,14 +40,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <complexType name="Articulo">
-    <sequence>
-     <element name="articulo" nillable="true" type="xsd:string"/>
-     <element name="categoria" nillable="true" type="xsd:string"/>
-     <element name="idarticulo" type="xsd:int"/>
-     <element name="precio" nillable="true" type="xsd:decimal"/>
-    </sequence>
-   </complexType>
    <element name="getArticulos">
     <complexType/>
    </element>
@@ -47,20 +61,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="deleteArticuloReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addArticulo">
-    <complexType>
-     <sequence>
-      <element name="p" type="impl:Articulo"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addArticuloResponse">
-    <complexType>
-     <sequence>
-      <element name="addArticuloReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -91,17 +91,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addArticuloRequest">
+   <wsdl:message name="getArticulosRequest">
 
-      <wsdl:part element="impl:addArticulo" name="parameters">
+      <wsdl:part element="impl:getArticulos" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getArticulosRequest">
+   <wsdl:message name="addArticuloRequest">
 
-      <wsdl:part element="impl:getArticulos" name="parameters">
+      <wsdl:part element="impl:addArticulo" name="parameters">
 
       </wsdl:part>
 
@@ -132,6 +132,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="ArticuloWS">
+
+      <wsdl:operation name="addArticulo">
+
+         <wsdl:input message="impl:addArticuloRequest" name="addArticuloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticuloResponse" name="addArticuloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getArticulo">
 
@@ -169,23 +181,29 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addArticulo">
-
-         <wsdl:input message="impl:addArticuloRequest" name="addArticuloRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addArticuloResponse" name="addArticuloResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="ArticuloWSSoapBinding" type="impl:ArticuloWS">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addArticulo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticuloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticuloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getArticulo">
 
@@ -234,24 +252,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="deleteArticuloResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="addArticulo">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addArticuloRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addArticuloResponse">
 
             <wsdlsoap:body use="literal"/>
 

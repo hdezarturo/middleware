@@ -22,23 +22,31 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
- <ns1:service name="EmpresaX" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="suma" qname="ns1:suma" returnQName="ns1:sumaReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:a" type="xsd:int"/>
-   <ns2:parameter qname="ns1:b" type="xsd:int"/>
-  </ns2:operation>
-  <ns1:operation name="resta" qname="ns2:resta" returnQName="ns2:restaReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:a" type="xsd:int"/>
-   <ns1:parameter qname="ns2:b" type="xsd:int"/>
+ <ns1:service name="Articulo" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getArticulo" qname="ns1:getArticulo" returnQName="ns1:getArticuloReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="getIdarticulo" qname="ns2:getIdarticulo" returnQName="ns2:getIdarticuloReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setIdarticulo" qname="ns3:setIdarticulo" soapAction="" xmlns:ns3="http://practicas.middleware.mis">
+   <ns1:parameter qname="ns3:idarticulo" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="suma resta"/>
-  <ns1:parameter name="wsdlPortType" value="EmpresaX"/>
+  <ns1:operation name="setArticulo" qname="ns4:setArticulo" soapAction="" xmlns:ns4="http://practicas.middleware.mis">
+   <ns1:parameter qname="ns4:articulo" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getCategoria" qname="ns5:getCategoria" returnQName="ns5:getCategoriaReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setCategoria" qname="ns6:setCategoria" soapAction="" xmlns:ns6="http://practicas.middleware.mis">
+   <ns1:parameter qname="ns6:categoria" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getPrecio" qname="ns7:getPrecio" returnQName="ns7:getPrecioReturn" returnType="xsd:decimal" soapAction="" xmlns:ns7="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setPrecio" qname="ns8:setPrecio" soapAction="" xmlns:ns8="http://practicas.middleware.mis">
+   <ns1:parameter qname="ns8:precio" type="xsd:decimal" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="setCategoria setPrecio setArticulo getArticulo getCategoria getIdarticulo setIdarticulo getPrecio"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Articulo"/>
+  <ns1:parameter name="className" value="mis.middleware.practicas.Articulo"/>
+  <ns1:parameter name="wsdlServicePort" value="Articulo"/>
   <ns1:parameter name="schemaQualified" value="http://practicas.middleware.mis"/>
-  <ns1:parameter name="wsdlServicePort" value="EmpresaX"/>
-  <ns1:parameter name="className" value="mis.middleware.practicas.EmpresaX"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://practicas.middleware.mis"/>
-  <ns1:parameter name="wsdlServiceElement" value="EmpresaXService"/>
+  <ns1:parameter name="wsdlServiceElement" value="ArticuloService"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
@@ -51,15 +59,15 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="ArticuloWS" provider="java:RPC" style="wrapped" use="literal">
-  <ns1:operation name="getArticulo" qname="ns3:getArticulo" returnQName="ns3:getArticuloReturn" returnType="ns3:Articulo" soapAction="" xmlns:ns3="http://practicas.middleware.mis">
-   <ns1:parameter qname="ns3:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addArticulo" qname="ns9:addArticulo" returnQName="ns9:addArticuloReturn" returnType="xsd:boolean" soapAction="" xmlns:ns9="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:p" type="ns9:Articulo"/>
   </ns1:operation>
-  <ns1:operation name="getArticulos" qname="ns4:getArticulos" returnQName="ns4:getArticulosReturn" returnType="ns4:Articulo" soapAction="" xmlns:ns4="http://practicas.middleware.mis"/>
-  <ns1:operation name="deleteArticulo" qname="ns5:deleteArticulo" returnQName="ns5:deleteArticuloReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:id" type="xsd:int"/>
+  <ns1:operation name="getArticulo" qname="ns10:getArticulo" returnQName="ns10:getArticuloReturn" returnType="ns10:Articulo" soapAction="" xmlns:ns10="http://practicas.middleware.mis">
+   <ns1:parameter qname="ns10:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="addArticulo" qname="ns6:addArticulo" returnQName="ns6:addArticuloReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns6:p" type="ns6:Articulo"/>
+  <ns1:operation name="getArticulos" qname="ns11:getArticulos" returnQName="ns11:getArticulosReturn" returnType="ns11:Articulo" soapAction="" xmlns:ns11="http://practicas.middleware.mis"/>
+  <ns1:operation name="deleteArticulo" qname="ns12:deleteArticulo" returnQName="ns12:deleteArticuloReturn" returnType="xsd:boolean" soapAction="" xmlns:ns12="http://practicas.middleware.mis" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:id" type="xsd:int"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="getArticulo deleteArticulo addArticulo getArticulos"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
@@ -69,7 +77,7 @@
   <ns1:parameter name="schemaQualified" value="http://practicas.middleware.mis"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://practicas.middleware.mis"/>
   <ns1:parameter name="wsdlServiceElement" value="ArticuloWSService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:Articulo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:mis.middleware.practicas.Articulo" xmlns:ns7="http://practicas.middleware.mis"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:Articulo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:mis.middleware.practicas.Articulo" xmlns:ns13="http://practicas.middleware.mis"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
