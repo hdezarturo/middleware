@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmpresaXService WSDL service -->
+
+  <service name="EmpresaX" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://practicas.middleware.mis"/>
+      <parameter name="wsdlServiceElement" value="EmpresaXService"/>
+      <parameter name="schemaQualified" value="http://practicas.middleware.mis"/>
+      <parameter name="wsdlServicePort" value="EmpresaX"/>
+      <parameter name="className" value="mis.middleware.practicas.EmpresaXSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="EmpresaX"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="suma" qname="operNS:suma" xmlns:operNS="http://practicas.middleware.mis" returnQName="retNS:sumaReturn" xmlns:retNS="http://practicas.middleware.mis" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:a" xmlns:pns="http://practicas.middleware.mis" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:b" xmlns:pns="http://practicas.middleware.mis" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="resta" qname="operNS:resta" xmlns:operNS="http://practicas.middleware.mis" returnQName="retNS:restaReturn" xmlns:retNS="http://practicas.middleware.mis" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:a" xmlns:pns="http://practicas.middleware.mis" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:b" xmlns:pns="http://practicas.middleware.mis" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="suma resta"/>
+
+  </service>
+</deployment>

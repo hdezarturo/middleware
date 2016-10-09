@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://practicas.middleware.mis" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://practicas.middleware.mis" xmlns:intf="http://practicas.middleware.mis" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://practicas.middleware.mis" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getArticulo">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getArticuloResponse">
+    <complexType>
+     <sequence>
+      <element name="getArticuloReturn" type="impl:Articulo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Articulo">
+    <sequence>
+     <element name="articulo" nillable="true" type="xsd:string"/>
+     <element name="categoria" nillable="true" type="xsd:string"/>
+     <element name="idarticulo" type="xsd:int"/>
+     <element name="precio" nillable="true" type="xsd:decimal"/>
+    </sequence>
+   </complexType>
+   <element name="getArticulos">
+    <complexType/>
+   </element>
+   <element name="getArticulosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getArticulosReturn" type="impl:Articulo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteArticulo">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteArticuloResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteArticuloReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticulo">
+    <complexType>
+     <sequence>
+      <element name="p" type="impl:Articulo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticuloResponse">
+    <complexType>
+     <sequence>
+      <element name="addArticuloReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteArticuloRequest">
+
+      <wsdl:part element="impl:deleteArticulo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getArticuloRequest">
+
+      <wsdl:part element="impl:getArticulo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getArticuloResponse">
+
+      <wsdl:part element="impl:getArticuloResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticuloRequest">
+
+      <wsdl:part element="impl:addArticulo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getArticulosRequest">
+
+      <wsdl:part element="impl:getArticulos" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticuloResponse">
+
+      <wsdl:part element="impl:addArticuloResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteArticuloResponse">
+
+      <wsdl:part element="impl:deleteArticuloResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getArticulosResponse">
+
+      <wsdl:part element="impl:getArticulosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ArticuloWS">
+
+      <wsdl:operation name="getArticulo">
+
+         <wsdl:input message="impl:getArticuloRequest" name="getArticuloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getArticuloResponse" name="getArticuloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getArticulos">
+
+         <wsdl:input message="impl:getArticulosRequest" name="getArticulosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getArticulosResponse" name="getArticulosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteArticulo">
+
+         <wsdl:input message="impl:deleteArticuloRequest" name="deleteArticuloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteArticuloResponse" name="deleteArticuloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticulo">
+
+         <wsdl:input message="impl:addArticuloRequest" name="addArticuloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticuloResponse" name="addArticuloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ArticuloWSSoapBinding" type="impl:ArticuloWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getArticulo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getArticuloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getArticuloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getArticulos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getArticulosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getArticulosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteArticulo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteArticuloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteArticuloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticulo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticuloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticuloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ArticuloWSService">
+
+      <wsdl:port binding="impl:ArticuloWSSoapBinding" name="ArticuloWS">
+
+         <wsdlsoap:address location="http://localhost:8080/MISmiddleware/services/ArticuloWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ArticuloWSService WSDL service -->
+
+  <service name="ArticuloWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://practicas.middleware.mis"/>
+      <parameter name="wsdlServiceElement" value="ArticuloWSService"/>
+      <parameter name="schemaQualified" value="http://practicas.middleware.mis"/>
+      <parameter name="wsdlServicePort" value="ArticuloWS"/>
+      <parameter name="className" value="mis.middleware.practicas.ArticuloWS"/>
+      <parameter name="wsdlPortType" value="ArticuloWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://practicas.middleware.mis" xmlns:retNS="http://practicas.middleware.mis" xmlns:rtns="http://practicas.middleware.mis" name="getArticulo" qname="operNS:getArticulo" returnQName="retNS:getArticuloReturn" returnType="rtns:Articulo" soapAction="">
+        <parameter xmlns:pns="http://practicas.middleware.mis" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://practicas.middleware.mis" xmlns:retNS="http://practicas.middleware.mis" xmlns:rtns="http://practicas.middleware.mis" name="getArticulos" qname="operNS:getArticulos" returnQName="retNS:getArticulosReturn" returnType="rtns:Articulo" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://practicas.middleware.mis" xmlns:retNS="http://practicas.middleware.mis" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteArticulo" qname="operNS:deleteArticulo" returnQName="retNS:deleteArticuloReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://practicas.middleware.mis" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://practicas.middleware.mis" xmlns:retNS="http://practicas.middleware.mis" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addArticulo" qname="operNS:addArticulo" returnQName="retNS:addArticuloReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://practicas.middleware.mis" xmlns:tns="http://practicas.middleware.mis" qname="pns:p" type="tns:Articulo"/>
+      </operation>
+      <parameter name="allowedMethods" value="getArticulo deleteArticulo addArticulo getArticulos"/>
+
+      <typeMapping xmlns:ns="http://practicas.middleware.mis" qname="ns:Articulo" type="java:mis.middleware.practicas.Articulo" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

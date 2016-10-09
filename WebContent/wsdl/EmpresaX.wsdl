@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://practicas.middleware.mis" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://practicas.middleware.mis" xmlns:intf="http://practicas.middleware.mis" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://practicas.middleware.mis" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="suma">
+    <complexType>
+     <sequence>
+      <element name="a" type="xsd:int"/>
+      <element name="b" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sumaResponse">
+    <complexType>
+     <sequence>
+      <element name="sumaReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="resta">
+    <complexType>
+     <sequence>
+      <element name="a" type="xsd:int"/>
+      <element name="b" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="restaResponse">
+    <complexType>
+     <sequence>
+      <element name="restaReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="restaRequest">
+
+      <wsdl:part element="impl:resta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sumaRequest">
+
+      <wsdl:part element="impl:suma" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="restaResponse">
+
+      <wsdl:part element="impl:restaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sumaResponse">
+
+      <wsdl:part element="impl:sumaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EmpresaX">
+
+      <wsdl:operation name="suma">
+
+         <wsdl:input message="impl:sumaRequest" name="sumaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sumaResponse" name="sumaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="resta">
+
+         <wsdl:input message="impl:restaRequest" name="restaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:restaResponse" name="restaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EmpresaXSoapBinding" type="impl:EmpresaX">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="suma">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sumaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sumaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="resta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="restaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="restaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EmpresaXService">
+
+      <wsdl:port binding="impl:EmpresaXSoapBinding" name="EmpresaX">
+
+         <wsdlsoap:address location="http://localhost:8080/MISmiddleware/services/EmpresaX"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
